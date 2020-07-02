@@ -4,6 +4,7 @@ import 'package:flutter_music_player/app/modules/home/pages/favorites/favorites_
 import 'package:flutter_music_player/app/modules/home/pages/playlist/playlist_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/settings/settings_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/song_list/song_list_page.dart';
+import 'package:flutter_music_player/app/modules/home/utils/constants/order_by_enum.dart';
 import 'package:mobx/mobx.dart';
 part 'home_controller.g.dart';
 
@@ -15,6 +16,15 @@ abstract class _HomeControllerBase with Store {
 
   @computed
   int get currentIndex => _currentIndex;
+
+  @observable
+  OrderBy _dropDownValue = OrderBy.latest;
+
+  @computed
+  OrderBy get dropDownValue => _dropDownValue;
+
+  bool get showAppBar =>
+      (currentIndex == 2 || currentIndex == 4) ? false : true;
 
   Widget _songListPage = SongListPage();
   Widget _playlistPage = PlaylistPage();
@@ -54,5 +64,10 @@ abstract class _HomeControllerBase with Store {
   void changeCurrentIndex(int newCurrentIndex, {bool isRestart = false}) {
     _isRestart = isRestart;
     _currentIndex = newCurrentIndex;
+  }
+
+  @action
+  void onChanged(OrderBy orderBy) {
+    _dropDownValue = orderBy;
   }
 }
