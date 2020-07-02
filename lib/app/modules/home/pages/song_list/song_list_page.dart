@@ -25,7 +25,7 @@ class _SongListPageState extends State<SongListPage> {
       children: <Widget>[
         Column(children: <Widget>[
           SizedBox(
-            height: 135,
+            height: 20,
           ),
           Expanded(
             child: AnimatedList(
