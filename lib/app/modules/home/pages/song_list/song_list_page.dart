@@ -34,7 +34,10 @@ class _SongListPageState extends State<SongListPage> {
                 itemBuilder: (context, index, animation) {
                   return FadeTransition(
                     opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
-                    child: SongTile(songListController.songs[index]),
+                    child: SongTile(
+                      song: songListController.songs[index],
+                      songs: songListController.songs,
+                    ),
                   );
                 },
                 initialItemCount: songListController.songs.length),

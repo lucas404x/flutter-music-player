@@ -24,7 +24,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       children: <Widget>[
         Column(children: <Widget>[
           SizedBox(
-            height: 135,
+            height: 20,
           ),
           Expanded(
             child: AnimatedList(
@@ -33,7 +33,9 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 itemBuilder: (context, index, animation) {
                   return FadeTransition(
                     opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
-                    child: SongTile(favoritesController.favorites[index]),
+                    child: SongTile(
+                        song: favoritesController.favorites[index],
+                        songs: favoritesController.favorites),
                   );
                 },
                 initialItemCount: favoritesController.favorites.length),
