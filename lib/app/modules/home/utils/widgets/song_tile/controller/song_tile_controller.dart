@@ -12,13 +12,16 @@ abstract class _SongTileControllerBase with Store {
   Function(String, int) get limitText => _homeStore.limitText;
 
   Song _song;
+  List<Song> _songsMode;
 
-  _SongTileControllerBase(Song song) {
+  _SongTileControllerBase(Song song, List<Song> songsMode) {
     _song = song;
+    _songsMode = songsMode;
   }
 
   void onTap() {
     _homeStore.song = _song;
+    _homeStore.songsMode = _songsMode;
     Modular.get<HomeController>().changeCurrentIndex(2);
   }
 }

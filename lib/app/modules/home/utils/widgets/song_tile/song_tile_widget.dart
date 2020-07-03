@@ -4,13 +4,14 @@ import 'package:flutter_music_player/app/modules/home/utils/widgets/heart/heart.
 import 'package:flutter_music_player/app/modules/home/utils/widgets/song_tile/controller/song_tile_controller.dart';
 
 class SongTile extends StatelessWidget {
+  final List<Song> songs;
   final Song song;
 
-  SongTile(this.song);
+  SongTile({@required this.songs, @required this.song});
 
   @override
   Widget build(BuildContext context) {
-    final songTileController = SongTileController(song);
+    final songTileController = SongTileController(song, songs);
 
     return GestureDetector(
         onTap: songTileController.onTap,
