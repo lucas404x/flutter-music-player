@@ -39,7 +39,6 @@ abstract class _CurrentSongControllerBase with Store {
   }
 
   init() async {
-    AudioPlayer.logEnabled = true;
     await playSong();
     await getDuration();
     getProgress();
