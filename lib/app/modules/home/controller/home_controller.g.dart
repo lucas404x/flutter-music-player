@@ -16,13 +16,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
       (_$currentIndexComputed ??= Computed<int>(() => super.currentIndex,
               name: '_HomeControllerBase.currentIndex'))
           .value;
-  Computed<OrderBy> _$dropDownValueComputed;
-
-  @override
-  OrderBy get dropDownValue =>
-      (_$dropDownValueComputed ??= Computed<OrderBy>(() => super.dropDownValue,
-              name: '_HomeControllerBase.dropDownValue'))
-          .value;
 
   final _$_currentIndexAtom = Atom(name: '_HomeControllerBase._currentIndex');
 
@@ -36,21 +29,6 @@ mixin _$HomeController on _HomeControllerBase, Store {
   set _currentIndex(int value) {
     _$_currentIndexAtom.reportWrite(value, super._currentIndex, () {
       super._currentIndex = value;
-    });
-  }
-
-  final _$_dropDownValueAtom = Atom(name: '_HomeControllerBase._dropDownValue');
-
-  @override
-  OrderBy get _dropDownValue {
-    _$_dropDownValueAtom.reportRead();
-    return super._dropDownValue;
-  }
-
-  @override
-  set _dropDownValue(OrderBy value) {
-    _$_dropDownValueAtom.reportWrite(value, super._dropDownValue, () {
-      super._dropDownValue = value;
     });
   }
 
@@ -69,21 +47,9 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
-  void onChanged(OrderBy orderBy) {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
-        name: '_HomeControllerBase.onChanged');
-    try {
-      return super.onChanged(orderBy);
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-currentIndex: ${currentIndex},
-dropDownValue: ${dropDownValue}
+currentIndex: ${currentIndex}
     ''';
   }
 }
