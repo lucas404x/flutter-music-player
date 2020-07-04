@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
 
     return Observer(
       builder: (_) => Scaffold(
-          backgroundColor: Colors.white,
           bottomNavigationBar: CustomNavigationBar(
             backgroundColor: Colors.white,
             selectedColor: Colors.orange,
