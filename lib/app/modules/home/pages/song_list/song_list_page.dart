@@ -11,16 +11,18 @@ class SongListPage extends StatefulWidget {
 }
 
 class _SongListPageState extends State<SongListPage> {
-  final songListController = SongListController();
+  String filterText = '';
 
   @override
   void dispose() {
-    songListController.dispose();
+    filterText = '';
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final songListController = SongListController(filterText);
+
     return Stack(
       children: <Widget>[
         Column(children: <Widget>[
@@ -31,6 +33,11 @@ class _SongListPageState extends State<SongListPage> {
             padding: EdgeInsets.all(10),
             child: TextFormField(
               textAlign: TextAlign.center,
+              onChanged: (String text) {
+                setState(() {
+                  filterText = text.trim();
+                });
+              },
               decoration: InputDecoration(
                 hintText: 'Search',
                 suffixIcon: Icon(Icons.search),
@@ -42,16 +49,21 @@ class _SongListPageState extends State<SongListPage> {
                 controller: songListController.scrollController,
                 key: songListController.songListKey,
                 itemBuilder: (context, index, animation) {
-                  return FadeTransition(
-                    opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
-                    child: SongTile(
-                      song: songListController.songs[index],
-                      songs: songListController.songs,
-                    ),
-                  );
+                  bool showSong = songListController
+                      .showSong(songListController.songs[index]);
+
+                  return showSong
+                      ? FadeTransition(
+                          opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
+                          child: SongTile(
+                            song: songListController.songs[index],
+                            songs: songListController.songs,
+                          ),
+                        )
+                      : Container();
                 },
                 initialItemCount: songListController.songs.length),
-          )
+          ),
         ]),
         Column(
           mainAxisAlignment: MainAxisAlignment.end,

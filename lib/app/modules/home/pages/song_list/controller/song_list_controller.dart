@@ -14,7 +14,7 @@ class SongListController = _SongListControllerBase with _$SongListController;
 abstract class _SongListControllerBase with Store {
   final _flutterSoundHelper = FlutterSoundHelper();
 
-  final _songListKey = GlobalKey<AnimatedListState>();
+  GlobalKey<AnimatedListState> _songListKey = GlobalKey<AnimatedListState>();
   GlobalKey<AnimatedListState> get songListKey => _songListKey;
 
   final _scrollController = ScrollController();
@@ -28,11 +28,13 @@ abstract class _SongListControllerBase with Store {
   @computed
   double get shuffleButtonOrNot => _showButton ? 1.0 : 0.0;
 
+  String filterText;
+
   List<String> _favorites;
 
-  _SongListControllerBase() {
+  _SongListControllerBase(filterText) {
+    this.filterText = filterText;
     getAllSongs();
-
     _scrollController.addListener(_scrollControllerListener);
   }
 
@@ -61,7 +63,7 @@ abstract class _SongListControllerBase with Store {
         song = Song.fromJson(data);
         data.clear();
 
-        if (song.name == null) return;
+        if (song.path == null || song.name == null) return;
 
         songs.add(song);
 
@@ -83,6 +85,11 @@ abstract class _SongListControllerBase with Store {
   @action
   void _changeShowButtonState(bool newState) {
     _showButton = newState;
+  }
+
+  bool showSong(Song song) {
+    print(filterText);
+    return song.name.toLowerCase().contains(filterText.toLowerCase());
   }
 
   void dispose() {
