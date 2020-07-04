@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/pages/current_song/current_song_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/favorites/favorites_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlist/playlist_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/settings/settings_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/song_list/song_list_page.dart';
+import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
 import 'package:mobx/mobx.dart';
 part 'home_controller.g.dart';
 
@@ -63,5 +65,11 @@ abstract class _HomeControllerBase with Store {
   void changeCurrentIndex(int newCurrentIndex, {bool isRestart = false}) {
     _isRestart = isRestart;
     _currentIndex = newCurrentIndex;
+  }
+
+  dispose() async {
+    if (Modular.get<HomeStore>().audioPlayer != null) {
+      await Modular.get<HomeStore>().dispose();
+    }
   }
 }
