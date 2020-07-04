@@ -39,6 +39,7 @@ abstract class _SongListControllerBase with Store {
   List<Song> songs = [];
 
   void getAllSongs() {
+    Song song;
     Map data = {};
     Directory directory = Modular.get<HomeStore>().directory;
 
@@ -46,7 +47,6 @@ abstract class _SongListControllerBase with Store {
       _flutterSoundHelper.FFmpegGetMediaInformation(systemFile.absolute.path)
           .then((Map value) async {
         data.addAll(value['metadata']);
-        data['duration'] = value['duration'];
         data['path'] = systemFile.absolute.path;
 
         if (_favorites == null)
@@ -58,12 +58,15 @@ abstract class _SongListControllerBase with Store {
           data['isFavorite'] = false;
         }
 
-        songs.add(Song.fromJson(data));
+        song = Song.fromJson(data);
+        data.clear();
+
+        if (song.name == null) return;
+
+        songs.add(song);
 
         if (_songListKey.currentState != null)
           _songListKey.currentState.insertItem(songs.length - 1);
-
-        data.clear();
       });
     });
   }
