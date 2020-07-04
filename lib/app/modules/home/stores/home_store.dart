@@ -60,4 +60,8 @@ abstract class _HomeStoreBase with Store {
 
     return text.substring(0, limit - 3) + '...';
   }
+
+  Future<void> dispose() async {
+    audioPlayer.stop();
+  }
 }
