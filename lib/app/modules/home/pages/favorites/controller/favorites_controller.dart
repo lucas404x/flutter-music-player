@@ -42,7 +42,6 @@ abstract class _FavoritesControllerBase with Store {
     favoriteSongsPath.forEach((uri) {
       _flutterSoundHelper.FFmpegGetMediaInformation(uri).then((value) {
         data.addAll(value['metadata']);
-        data['duration'] = value['duration'];
         data['isFavorite'] = true;
         data['path'] = uri;
 
