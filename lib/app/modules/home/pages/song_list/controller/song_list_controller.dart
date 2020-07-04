@@ -45,7 +45,7 @@ abstract class _SongListControllerBase with Store {
     Map data = {};
     Directory directory = Modular.get<HomeStore>().directory;
 
-    directory.listSync(recursive: true).forEach((systemFile) {
+    directory.listSync().forEach((systemFile) {
       _flutterSoundHelper.FFmpegGetMediaInformation(systemFile.absolute.path)
           .then((Map value) async {
         data.addAll(value['metadata']);
