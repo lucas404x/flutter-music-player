@@ -26,6 +26,16 @@ class _FavoritesPageState extends State<FavoritesPage> {
           SizedBox(
             height: 20,
           ),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: 'Search',
+                suffixIcon: Icon(Icons.search),
+              ),
+            ),
+          ),
           Expanded(
             child: AnimatedList(
                 controller: favoritesController.scrollController,
