@@ -30,6 +30,9 @@ abstract class _HomeControllerBase with Store {
   Widget get currentPage {
     switch (_currentIndex) {
       case 0:
+        if (_isRestart) {
+          _songListPage = SongListPage();
+        }
         return _songListPage;
         break;
       case 1:
@@ -43,6 +46,9 @@ abstract class _HomeControllerBase with Store {
         return _currentSongPage;
         break;
       case 3:
+        if (_isRestart) {
+          _favoritesPage = FavoritesPage();
+        }
         return _favoritesPage;
         break;
       case 4:
