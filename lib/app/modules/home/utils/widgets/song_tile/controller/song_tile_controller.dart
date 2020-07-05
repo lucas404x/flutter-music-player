@@ -14,6 +14,9 @@ abstract class _SongTileControllerBase with Store {
   Song _song;
   List<Song> _songsMode;
 
+  bool get isCurrentSong =>
+      _homeStore.song != null && _homeStore.song.path == _song.path;
+
   _SongTileControllerBase(Song song, List<Song> songsMode) {
     _song = song;
     _songsMode = songsMode;

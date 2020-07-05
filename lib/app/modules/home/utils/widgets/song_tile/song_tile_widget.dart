@@ -31,6 +31,9 @@ class SongTile extends StatelessWidget {
             ),
             height: 65,
             decoration: BoxDecoration(
+                border: songTileController.isCurrentSong
+                    ? Border.all(color: Colors.orange)
+                    : null,
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(35),
                 boxShadow: [
