@@ -10,16 +10,18 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  final favoritesController = FavoritesController();
+  String filterText = '';
 
   @override
   void dispose() {
-    favoritesController.dispose();
+    filterText = '';
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final favoritesController = FavoritesController(filterText);
+
     return Stack(
       children: <Widget>[
         Column(children: <Widget>[
@@ -29,6 +31,11 @@ class _FavoritesPageState extends State<FavoritesPage> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextFormField(
+              onChanged: (String text) {
+                setState(() {
+                  filterText = text.trim();
+                });
+              },
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 hintText: 'Search',
@@ -41,12 +48,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 controller: favoritesController.scrollController,
                 key: favoritesController.songFavoriteKey,
                 itemBuilder: (context, index, animation) {
-                  return FadeTransition(
-                    opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
-                    child: SongTile(
-                        song: favoritesController.favorites[index],
-                        songs: favoritesController.favorites),
-                  );
+                  return favoritesController
+                          .showSong(favoritesController.favorites[index])
+                      ? FadeTransition(
+                          opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
+                          child: SongTile(
+                              song: favoritesController.favorites[index],
+                              songs: favoritesController.favorites),
+                        )
+                      : null;
                 },
                 initialItemCount: favoritesController.favorites.length),
           )

@@ -26,7 +26,10 @@ abstract class _FavoritesControllerBase with Store {
   @computed
   double get shuffleButtonOrNot => _showButton ? 1.0 : 0.0;
 
-  _FavoritesControllerBase() {
+  String filterText;
+
+  _FavoritesControllerBase(filterText) {
+    this.filterText = filterText;
     getSongs();
     _scrollController.addListener(_scrollControllerListener);
   }
@@ -69,6 +72,10 @@ abstract class _FavoritesControllerBase with Store {
   @action
   void _changeShowButtonState(bool newState) {
     _showButton = newState;
+  }
+
+  bool showSong(Song song) {
+    return song.name.toLowerCase().contains(filterText.toLowerCase());
   }
 
   void dispose() {
