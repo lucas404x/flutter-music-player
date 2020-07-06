@@ -48,15 +48,16 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 controller: favoritesController.scrollController,
                 key: favoritesController.songFavoriteKey,
                 itemBuilder: (context, index, animation) {
-                  return favoritesController
-                          .showSong(favoritesController.favorites[index])
+                  bool showSong = favoritesController
+                      .showSong(favoritesController.favorites[index]);
+                  return showSong
                       ? FadeTransition(
                           opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
                           child: SongTile(
                               song: favoritesController.favorites[index],
                               songs: favoritesController.favorites),
                         )
-                      : null;
+                      : Container();
                 },
                 initialItemCount: favoritesController.favorites.length),
           )
