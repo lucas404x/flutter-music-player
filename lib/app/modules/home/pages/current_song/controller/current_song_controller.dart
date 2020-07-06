@@ -42,7 +42,7 @@ abstract class _CurrentSongControllerBase with Store {
     await playSong();
     await getDuration();
     getProgress();
-    _homeStore.audioPlayer.onPlayerCompletion.listen(_restart);
+    _homeStore.audioPlayer.onPlayerCompletion.listen(_nextSong);
   }
 
   playSong() async {
@@ -73,7 +73,7 @@ abstract class _CurrentSongControllerBase with Store {
     return _innerWidget;
   }
 
-  _restart(event) async {
+  _nextSong(event) async {
     _homeStore.audioPlayer.dispose();
     _homeStore.audioPlayer = AudioPlayer(mode: PlayerMode.MEDIA_PLAYER);
     _homeStore.getRandomSong();
