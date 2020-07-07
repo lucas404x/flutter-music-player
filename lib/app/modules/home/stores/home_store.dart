@@ -30,14 +30,14 @@ abstract class _HomeStoreBase with Store {
     }
   }
 
-  Future<List<String>> getFavoriteSongs() async {
+  Future<List<String>> getSongsOnDisk(String key) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    if (!sharedPreferences.containsKey(Constants.FAVORITE_KEY)) {
-      await sharedPreferences.setStringList(Constants.FAVORITE_KEY, []);
+    if (!sharedPreferences.containsKey(key)) {
+      await sharedPreferences.setStringList(key, []);
     }
 
-    return sharedPreferences.getStringList(Constants.FAVORITE_KEY);
+    return sharedPreferences.getStringList(key);
   }
 
   void getRandomSong() {
