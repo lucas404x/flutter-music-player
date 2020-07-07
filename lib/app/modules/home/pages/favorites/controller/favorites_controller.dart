@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/models/song.dart';
@@ -43,7 +45,12 @@ abstract class _FavoritesControllerBase with Store {
 
     Map data = {};
 
-    favoriteSongsPath.forEach((uri) {
+    favoriteSongsPath.forEach((uri) async {
+      if (!File(uri).existsSync()) {
+        await Modular.get<HomeStore>().removeSong(Constants.FAVORITE_KEY, uri);
+        return;
+      }
+
       _flutterSoundHelper.FFmpegGetMediaInformation(uri).then((value) {
         data.addAll(value['metadata']);
         data['isFavorite'] = true;
