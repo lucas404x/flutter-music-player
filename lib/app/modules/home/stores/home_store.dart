@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_music_player/app/modules/home/models/song.dart';
-import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'home_store.g.dart';
@@ -38,6 +37,13 @@ abstract class _HomeStoreBase with Store {
     }
 
     return sharedPreferences.getStringList(key);
+  }
+
+  Future<void> removeSong(String key, String path) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> value = await getSongsOnDisk(key);
+    value.remove(path);
+    await sharedPreferences.setStringList(key, value);
   }
 
   void getRandomSong() {
