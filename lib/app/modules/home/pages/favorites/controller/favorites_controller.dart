@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/models/song.dart';
 import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
+import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:mobx/mobx.dart';
 part 'favorites_controller.g.dart';
@@ -36,7 +37,7 @@ abstract class _FavoritesControllerBase with Store {
 
   Future<void> getSongs() async {
     List<String> favoriteSongsPath =
-        await Modular.get<HomeStore>().getFavoriteSongs();
+        await Modular.get<HomeStore>().getSongsOnDisk(Constants.FAVORITE_KEY);
 
     if (favoriteSongsPath.length == 0) return;
 

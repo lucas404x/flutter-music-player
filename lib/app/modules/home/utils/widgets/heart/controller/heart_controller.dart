@@ -28,7 +28,8 @@ abstract class _HeartControllerBase with Store {
   @action
   Future<void> changeState() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    List<String> favorites = await _homeStore.getFavoriteSongs();
+    List<String> favorites =
+        await _homeStore.getSongsOnDisk(Constants.FAVORITE_KEY);
 
     if (song.isFavorite) {
       song.isFavorite = false;

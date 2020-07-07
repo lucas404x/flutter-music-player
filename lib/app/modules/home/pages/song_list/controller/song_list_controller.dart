@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/models/song.dart';
 import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
+import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:mobx/mobx.dart';
 
@@ -52,7 +53,8 @@ abstract class _SongListControllerBase with Store {
         data['path'] = systemFile.absolute.path;
 
         if (_favorites == null)
-          _favorites = await Modular.get<HomeStore>().getFavoriteSongs();
+          _favorites = await Modular.get<HomeStore>()
+              .getSongsOnDisk(Constants.FAVORITE_KEY);
 
         if (_favorites.contains(data['path'])) {
           data['isFavorite'] = true;
