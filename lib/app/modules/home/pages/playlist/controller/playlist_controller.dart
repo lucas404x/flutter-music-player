@@ -34,6 +34,7 @@ abstract class _PlayListControllerBase with Store {
     heightScreen = heightScreen + heightScreen * 0.35;
   }
 
+  @action
   void noFocus() {
     if (!focusNode.hasFocus) heightScreen = heightScreen - heightScreen * 0.26;
   }

@@ -39,6 +39,17 @@ mixin _$PlayListController on _PlayListControllerBase, Store {
   }
 
   @override
+  void noFocus() {
+    final _$actionInfo = _$_PlayListControllerBaseActionController.startAction(
+        name: '_PlayListControllerBase.noFocus');
+    try {
+      return super.noFocus();
+    } finally {
+      _$_PlayListControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 heightScreen: ${heightScreen}
