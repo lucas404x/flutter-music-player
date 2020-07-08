@@ -6,11 +6,12 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        fontFamily: 'Open Sans',
-        primaryColor: Colors.orange,
-        backgroundColor: Colors.white,
-        cursorColor: Colors.orange,
-      ),
+          fontFamily: 'Open Sans',
+          primaryColor: Colors.orange,
+          backgroundColor: Colors.white,
+          cursorColor: Colors.orange,
+          scaffoldBackgroundColor: Colors.white,
+          canvasColor: Colors.transparent),
       title: 'Flutter Music App',
       navigatorKey: Modular.navigatorKey,
       initialRoute: Modular.initialRoute,
