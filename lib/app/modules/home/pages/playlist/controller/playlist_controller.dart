@@ -20,7 +20,7 @@ abstract class _PlayListControllerBase with Store {
     this.focusNode = focusNode;
     getPlaylists();
 
-    this.focusNode.addListener(noFocus);
+    this.focusNode.addListener(focusChanged);
   }
 
   Future<void> getPlaylists() async {
@@ -29,7 +29,7 @@ abstract class _PlayListControllerBase with Store {
   }
 
   @action
-  void noFocus() {
+  void focusChanged() {
     if (!focusNode.hasFocus)
       heightScreen = heightScreen - heightScreen * 0.26;
     else

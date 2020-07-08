@@ -28,11 +28,11 @@ mixin _$PlayListController on _PlayListControllerBase, Store {
       ActionController(name: '_PlayListControllerBase');
 
   @override
-  void noFocus() {
+  void focusChanged() {
     final _$actionInfo = _$_PlayListControllerBaseActionController.startAction(
-        name: '_PlayListControllerBase.noFocus');
+        name: '_PlayListControllerBase.focusChanged');
     try {
-      return super.noFocus();
+      return super.focusChanged();
     } finally {
       _$_PlayListControllerBaseActionController.endAction(_$actionInfo);
     }
