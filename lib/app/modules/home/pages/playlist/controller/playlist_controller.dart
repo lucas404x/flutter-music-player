@@ -13,10 +13,16 @@ abstract class _PlayListControllerBase with Store {
   @observable
   double heightScreen;
 
+  double _heightScreenWithFocusOn;
+  double _heightScreenWithFocusOff;
+
   FocusNode focusNode;
 
   _PlayListControllerBase(double heightScreen, FocusNode focusNode) {
-    this.heightScreen = heightScreen;
+    _heightScreenWithFocusOn = heightScreen;
+    _heightScreenWithFocusOff = heightScreen * 0.26;
+    this.heightScreen = _heightScreenWithFocusOff;
+
     this.focusNode = focusNode;
     getPlaylists();
 
@@ -31,9 +37,9 @@ abstract class _PlayListControllerBase with Store {
   @action
   void focusChanged() {
     if (!focusNode.hasFocus)
-      heightScreen = heightScreen - heightScreen * 0.26;
+      heightScreen = _heightScreenWithFocusOff;
     else
-      heightScreen = heightScreen + heightScreen * 0.35;
+      heightScreen = _heightScreenWithFocusOn;
     print(heightScreen);
   }
 }

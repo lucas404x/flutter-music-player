@@ -41,7 +41,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 context: context,
                 builder: (_) => Observer(
                       builder: (_) => Container(
-                        height: playlistController.heightScreen * 0.4,
+                        height: playlistController.heightScreen,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
