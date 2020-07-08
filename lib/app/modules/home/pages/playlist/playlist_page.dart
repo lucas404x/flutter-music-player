@@ -56,7 +56,6 @@ class _PlaylistPageState extends State<PlaylistPage> {
                               padding: EdgeInsets.all(10),
                               child: TextField(
                                 focusNode: playlistController.focusNode,
-                                onTap: playlistController.onTapTextField,
                                 decoration: InputDecoration(
                                   hintText: 'Playlist name',
                                 ),

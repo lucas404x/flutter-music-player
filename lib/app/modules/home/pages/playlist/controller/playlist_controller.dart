@@ -29,13 +29,11 @@ abstract class _PlayListControllerBase with Store {
   }
 
   @action
-  void onTapTextField() {
-    print(heightScreen);
-    heightScreen = heightScreen + heightScreen * 0.35;
-  }
-
-  @action
   void noFocus() {
-    if (!focusNode.hasFocus) heightScreen = heightScreen - heightScreen * 0.26;
+    if (!focusNode.hasFocus)
+      heightScreen = heightScreen - heightScreen * 0.26;
+    else
+      heightScreen = heightScreen + heightScreen * 0.35;
+    print(heightScreen);
   }
 }

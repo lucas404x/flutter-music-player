@@ -28,17 +28,6 @@ mixin _$PlayListController on _PlayListControllerBase, Store {
       ActionController(name: '_PlayListControllerBase');
 
   @override
-  void onTapTextField() {
-    final _$actionInfo = _$_PlayListControllerBaseActionController.startAction(
-        name: '_PlayListControllerBase.onTapTextField');
-    try {
-      return super.onTapTextField();
-    } finally {
-      _$_PlayListControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void noFocus() {
     final _$actionInfo = _$_PlayListControllerBaseActionController.startAction(
         name: '_PlayListControllerBase.noFocus');
