@@ -39,6 +39,21 @@ abstract class _HomeStoreBase with Store {
     return sharedPreferences.getStringList(key);
   }
 
+  Future<bool> saveDataOnDisk(String key, {String value}) async {
+    /*
+    if value is equal to null, 
+    it will understand that you want to create a new key.
+    */
+
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    List<String> data = await getSongsOnDisk(key);
+
+    if (value != null) data.add(value);
+    print(data);
+
+    return sharedPreferences.setStringList(key, data);
+  }
+
   Future<void> removeSong(String key, String path) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     List<String> value = await getSongsOnDisk(key);
