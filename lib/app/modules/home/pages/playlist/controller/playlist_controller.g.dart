@@ -9,18 +9,18 @@ part of 'playlist_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlayListController on _PlayListControllerBase, Store {
-  final _$heightScreenAtom = Atom(name: '_PlayListControllerBase.heightScreen');
+  final _$isFocusAtom = Atom(name: '_PlayListControllerBase.isFocus');
 
   @override
-  double get heightScreen {
-    _$heightScreenAtom.reportRead();
-    return super.heightScreen;
+  bool get isFocus {
+    _$isFocusAtom.reportRead();
+    return super.isFocus;
   }
 
   @override
-  set heightScreen(double value) {
-    _$heightScreenAtom.reportWrite(value, super.heightScreen, () {
-      super.heightScreen = value;
+  set isFocus(bool value) {
+    _$isFocusAtom.reportWrite(value, super.isFocus, () {
+      super.isFocus = value;
     });
   }
 
@@ -41,7 +41,7 @@ mixin _$PlayListController on _PlayListControllerBase, Store {
   @override
   String toString() {
     return '''
-heightScreen: ${heightScreen}
+isFocus: ${isFocus}
     ''';
   }
 }
