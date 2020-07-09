@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
+import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/dialog_widget/dialog_widget.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +12,7 @@ class CreatePlaylistController = _CreatePlaylistControllerBase
 
 abstract class _CreatePlaylistControllerBase with Store {
   bool _isFocus;
+  TextEditingController textEditingController;
 
   double _heightScreenWithFocusOn;
   double _heightScreenWithFocusOff;
@@ -21,15 +25,12 @@ abstract class _CreatePlaylistControllerBase with Store {
   double get heightScreen =>
       _isFocus ? _heightScreenWithFocusOn : _heightScreenWithFocusOff;
 
-  final textEditingController = TextEditingController();
-
-  _CreatePlaylistControllerBase(bool isFocus) {
-    _isFocus = isFocus;
-  }
+  _CreatePlaylistControllerBase(this._isFocus, this.textEditingController);
 
   Future<void> createPlaylist(BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String playlistName = textEditingController.text;
+    textEditingController.text = '';
 
     if (playlistName == '') return;
 
@@ -42,7 +43,10 @@ abstract class _CreatePlaylistControllerBase with Store {
       if (!decision) {
         Navigator.pop(context);
       }
-      print(decision);
     }
+
+    await Modular.get<HomeStore>().saveDataOnDisk(playlistName);
+    await Modular.get<HomeStore>()
+        .saveDataOnDisk(Constants.PLAYLIST_KEY, value: playlistName);
   }
 }
