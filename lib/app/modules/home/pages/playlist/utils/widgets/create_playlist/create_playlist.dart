@@ -3,14 +3,19 @@ import 'package:flutter_music_player/app/modules/home/pages/playlist/utils/widge
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
 
 class CreatePlaylist extends StatelessWidget {
+  final TextEditingController textEditingController;
   final FocusNode focusNode;
   final bool isFocus;
 
-  CreatePlaylist({@required this.focusNode, @required this.isFocus});
+  CreatePlaylist(
+      {@required this.textEditingController,
+      @required this.focusNode,
+      @required this.isFocus});
 
   @override
   Widget build(BuildContext context) {
-    final createPlaylistController = CreatePlaylistController(isFocus);
+    final createPlaylistController =
+        CreatePlaylistController(isFocus, textEditingController);
     createPlaylistController.heightScreen = MediaQuery.of(context).size.height;
 
     return Container(
@@ -28,7 +33,7 @@ class CreatePlaylist extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextField(
-              controller: createPlaylistController.textEditingController,
+              controller: textEditingController,
               focusNode: focusNode,
               decoration: InputDecoration(
                 hintText: 'Playlist name',
