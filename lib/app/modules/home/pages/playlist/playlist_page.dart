@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlist/controller/playlist_controller.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlist/utils/widgets/create_playlist/create_playlist.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
@@ -12,8 +13,7 @@ class PlaylistPage extends StatefulWidget {
 class _PlaylistPageState extends State<PlaylistPage> {
   @override
   Widget build(BuildContext context) {
-    final playlistController = PlayListController();
-    final text = TextEditingController();
+    final playlistController = Modular.get<PlayListController>();
 
     return Column(
       children: <Widget>[
