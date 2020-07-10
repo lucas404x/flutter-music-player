@@ -6,12 +6,12 @@ import 'controller/playlists_controller.dart';
 import 'utils/widgets/create_playlist/create_playlist.dart';
 import 'utils/widgets/playlist_card/playlist_card.dart';
 
-class PlaylistPage extends StatefulWidget {
+class PlaylistsPage extends StatefulWidget {
   @override
-  _PlaylistPageState createState() => _PlaylistPageState();
+  _PlaylistsPageState createState() => _PlaylistsPageState();
 }
 
-class _PlaylistPageState extends State<PlaylistPage> {
+class _PlaylistsPageState extends State<PlaylistsPage> {
   @override
   Widget build(BuildContext context) {
     final playlistController = PlayListController();
