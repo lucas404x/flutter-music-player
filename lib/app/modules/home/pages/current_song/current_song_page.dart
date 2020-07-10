@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/pages/current_song/controller/current_song_controller.dart';
 import 'package:flutter_music_player/app/modules/home/pages/current_song/utils/widgets/progress_current_song/progress_current_song.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/heart/heart.dart';
@@ -12,7 +13,7 @@ class CurrentSongPage extends StatefulWidget {
 class _CurrentSongPageState extends State<CurrentSongPage> {
   @override
   Widget build(BuildContext context) {
-    final currentSongController = CurrentSongController();
+    final currentSongController = Modular.get<CurrentSongController>();
 
     return currentSongController.song != null
         ? Column(children: <Widget>[

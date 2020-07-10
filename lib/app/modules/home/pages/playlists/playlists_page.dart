@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
 
 import 'controller/playlists_controller.dart';
@@ -14,7 +15,7 @@ class PlaylistsPage extends StatefulWidget {
 class _PlaylistsPageState extends State<PlaylistsPage> {
   @override
   Widget build(BuildContext context) {
-    final playlistController = PlaylistsController();
+    final playlistController = Modular.get<PlaylistsController>();
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
