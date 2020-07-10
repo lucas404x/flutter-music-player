@@ -14,7 +14,7 @@ class PlaylistsPage extends StatefulWidget {
 class _PlaylistsPageState extends State<PlaylistsPage> {
   @override
   Widget build(BuildContext context) {
-    final playlistController = PlayListController();
+    final playlistController = PlaylistsController();
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
