@@ -6,7 +6,7 @@ import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
 import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:mobx/mobx.dart';
-part 'playlist_controller.g.dart';
+part 'playlists_controller.g.dart';
 
 class PlayListController = _PlayListControllerBase with _$PlayListController;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_music_player/app/modules/home/pages/playlist/utils/widgets/create_playlist/controller/create_playlist_controller.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
+import 'controller/create_playlist_controller.dart';
 
 class CreatePlaylist extends StatelessWidget {
   final TextEditingController textEditingController;

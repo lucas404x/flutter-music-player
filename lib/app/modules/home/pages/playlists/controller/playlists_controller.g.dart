@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'playlist_controller.dart';
+part of 'playlists_controller.dart';
 
 // **************************************************************************
 // StoreGenerator

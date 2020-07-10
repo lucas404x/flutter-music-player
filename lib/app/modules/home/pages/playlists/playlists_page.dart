@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_music_player/app/modules/home/pages/playlist/controller/playlist_controller.dart';
-import 'package:flutter_music_player/app/modules/home/pages/playlist/utils/widgets/create_playlist/create_playlist.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
 
+import 'controller/playlists_controller.dart';
+import 'utils/widgets/create_playlist/create_playlist.dart';
 import 'utils/widgets/playlist_card/playlist_card.dart';
 
 class PlaylistPage extends StatefulWidget {
