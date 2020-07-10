@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/pages/current_song/current_song_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/favorites/favorites_page.dart';
-import 'package:flutter_music_player/app/modules/home/pages/playlist/playlist_page.dart';
+import 'package:flutter_music_player/app/modules/home/pages/playlists/playlists_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/settings/settings_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/song_list/song_list_page.dart';
 import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
@@ -22,7 +22,7 @@ abstract class _HomeControllerBase with Store {
       (currentIndex == 2 || currentIndex == 4) ? false : true;
 
   Widget _songListPage = SongListPage();
-  Widget _playlistPage = PlaylistPage();
+  Widget _playlistPage = PlaylistsPage();
   Widget _currentSongPage = CurrentSongPage();
   Widget _favoritesPage = FavoritesPage();
   Widget _settingsPage = SettingsPage();
