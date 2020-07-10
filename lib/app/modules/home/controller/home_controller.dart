@@ -27,9 +27,13 @@ abstract class _HomeControllerBase with Store {
   Widget _favoritesPage = FavoritesPage();
   Widget _settingsPage = SettingsPage();
 
+  Widget _otherPage;
+
   bool _isRestart = false;
 
   Widget get currentPage {
+    if (_otherPage != null) return _otherPage;
+
     switch (_currentIndex) {
       case 0:
         if (_isRestart) {
@@ -65,6 +69,20 @@ abstract class _HomeControllerBase with Store {
   void changeCurrentIndex(int newCurrentIndex, {bool isRestart = false}) {
     _isRestart = isRestart;
     _currentIndex = newCurrentIndex;
+    _otherPage = null;
+  }
+
+  @action
+  void changeOtherPage({@required Widget page, @required int currentIndex}) {
+    /*
+    This method show another page without put over of Navigator.
+
+    page: the page reference.
+    currentIndex: the tab where will go to show.
+    */
+
+    _currentIndex = currentIndex;
+    _otherPage = page;
   }
 
   dispose() async {

@@ -47,6 +47,17 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void changeOtherPage({@required Widget page, @required int currentIndex}) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction(
+        name: '_HomeControllerBase.changeOtherPage');
+    try {
+      return super.changeOtherPage(page: page, currentIndex: currentIndex);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentIndex: ${currentIndex}
