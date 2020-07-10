@@ -34,7 +34,7 @@ abstract class _CreatePlaylistControllerBase with Store {
 
     if (playlistName == '') return;
 
-    if (!sharedPreferences.containsKey(playlistName)) {
+    if (sharedPreferences.containsKey(playlistName)) {
       bool decision = await dialogWidget(
           context: context,
           title: 'This playlist already exists.',
@@ -42,6 +42,7 @@ abstract class _CreatePlaylistControllerBase with Store {
 
       if (!decision) {
         Navigator.pop(context);
+        return;
       }
     }
 
