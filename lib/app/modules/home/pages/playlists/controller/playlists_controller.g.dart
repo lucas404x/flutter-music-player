@@ -8,7 +8,7 @@ part of 'playlists_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PlayListController on _PlayListControllerBase, Store {
+mixin _$PlaylistsController on _PlaylistsControllerBase, Store {
   final _$isFocusAtom = Atom(name: '_PlayListControllerBase.isFocus');
 
   @override

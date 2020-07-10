@@ -8,9 +8,9 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:mobx/mobx.dart';
 part 'playlists_controller.g.dart';
 
-class PlayListController = _PlayListControllerBase with _$PlayListController;
+class PlaylistsController = _PlaylistsControllerBase with _$PlaylistsController;
 
-abstract class _PlayListControllerBase with Store {
+abstract class _PlaylistsControllerBase with Store {
   @observable
   bool isFocus = false;
 
@@ -22,7 +22,7 @@ abstract class _PlayListControllerBase with Store {
 
   final _flutterSoundHelper = FlutterSoundHelper();
 
-  _PlayListControllerBase() {
+  _PlaylistsControllerBase() {
     getPlaylists();
     focusNode.addListener(focusChanged);
   }
