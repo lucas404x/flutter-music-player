@@ -29,8 +29,12 @@ abstract class _CreatePlaylistControllerBase with Store {
 
   Future<void> createPlaylist(BuildContext context) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String playlistName = textEditingController.text;
+    String playlistName = textEditingController.text.trim();
     textEditingController.text = '';
+
+    if (playlistName == '') return;
+    if (_isKeyName(playlistName))
+      playlistName = _toUpperFirstChar(playlistName);
 
     if (playlistName == '') return;
 
@@ -49,5 +53,20 @@ abstract class _CreatePlaylistControllerBase with Store {
     await Modular.get<HomeStore>().saveDataOnDisk(playlistName);
     await Modular.get<HomeStore>()
         .saveDataOnDisk(Constants.PLAYLIST_KEY, value: playlistName);
+  }
+
+  bool _isKeyName(String playlistName) {
+    List<String> keys = [Constants.FAVORITE_KEY, Constants.PLAYLIST_KEY];
+
+    for (String key in keys) {
+      if (playlistName == key) return true;
+    }
+
+    return false;
+  }
+
+  String _toUpperFirstChar(String playlistName) {
+    String upperChar = playlistName.substring(0, 1).toUpperCase();
+    return playlistName.replaceFirst(RegExp(r'.'), upperChar);
   }
 }
