@@ -35,6 +35,8 @@ class CreatePlaylist extends StatelessWidget {
             child: TextField(
               controller: textEditingController,
               focusNode: focusNode,
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(
                 hintText: 'Playlist name',
               ),
