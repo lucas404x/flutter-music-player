@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/models/playlist.dart';
-import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist/playlist_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist_card/controller/playlist_card_controller.dart';
 
 class PlayListCard extends StatelessWidget {
