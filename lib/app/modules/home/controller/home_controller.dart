@@ -42,6 +42,9 @@ abstract class _HomeControllerBase with Store {
         return _songListPage;
         break;
       case 1:
+        if (_isRestart) {
+          _playlistPage = PlaylistsPage();
+        }
         return _playlistPage;
         break;
       case 2:
