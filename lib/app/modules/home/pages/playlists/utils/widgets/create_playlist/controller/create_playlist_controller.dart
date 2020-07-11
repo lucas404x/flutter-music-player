@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_music_player/app/modules/get_folder/utils/constant/get_folder_constant.dart'
+    as getFolder;
 import 'package:flutter_music_player/app/modules/home/controller/home_controller.dart';
 import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
 import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
@@ -60,7 +62,11 @@ abstract class _CreatePlaylistControllerBase with Store {
   }
 
   bool _isKeyName(String playlistName) {
-    List<String> keys = [Constants.FAVORITE_KEY, Constants.PLAYLIST_KEY];
+    List<String> keys = [
+      Constants.FAVORITE_KEY,
+      Constants.PLAYLIST_KEY,
+      getFolder.Constants.DIRECTORY_KEY
+    ];
 
     for (String key in keys) {
       if (playlistName == key) return true;
