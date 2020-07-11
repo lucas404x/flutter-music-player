@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_music_player/app/modules/home/controller/home_controller.dart';
 import 'package:flutter_music_player/app/modules/home/stores/home_store.dart';
 import 'package:flutter_music_player/app/modules/home/utils/constants/constants.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/dialog_widget/dialog_widget.dart';
@@ -53,6 +54,9 @@ abstract class _CreatePlaylistControllerBase with Store {
     await Modular.get<HomeStore>().saveDataOnDisk(playlistName);
     await Modular.get<HomeStore>()
         .saveDataOnDisk(Constants.PLAYLIST_KEY, value: playlistName);
+
+    Navigator.pop(context);
+    Modular.get<HomeController>().changeCurrentIndex(1, isRestart: true);
   }
 
   bool _isKeyName(String playlistName) {
