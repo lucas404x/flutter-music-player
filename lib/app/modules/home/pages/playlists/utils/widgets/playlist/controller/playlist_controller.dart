@@ -3,4 +3,6 @@ part 'playlist_controller.g.dart';
 
 class PlaylistController = _PlaylistControllerBase with _$PlaylistController;
 
-abstract class _PlaylistControllerBase with Store {}
+abstract class _PlaylistControllerBase with Store {
+  void addNewSong() {}
+}
