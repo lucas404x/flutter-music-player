@@ -64,8 +64,5 @@ abstract class _PlaylistControllerBase with Store {
     selectedSongs.forEach((song) async {
       await Modular.get<HomeStore>().saveDataOnDisk(_playlistKey, value: song);
     });
-
-    Modular.get<HomeController>()
-        .changeOtherPage(currentIndex: 1, page: PlaylistPage(_playlistKey));
   }
 }
