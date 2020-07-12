@@ -25,6 +25,14 @@ mixin _$PlaylistController on _PlaylistControllerBase, Store {
     });
   }
 
+  final _$getPlaylistSongsAsyncAction =
+      AsyncAction('_PlaylistControllerBase.getPlaylistSongs');
+
+  @override
+  Future<void> getPlaylistSongs() {
+    return _$getPlaylistSongsAsyncAction.run(() => super.getPlaylistSongs());
+  }
+
   @override
   String toString() {
     return '''
