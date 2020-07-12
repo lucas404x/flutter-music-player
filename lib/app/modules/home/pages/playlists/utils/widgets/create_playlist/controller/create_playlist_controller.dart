@@ -36,6 +36,11 @@ abstract class _CreatePlaylistControllerBase with Store {
     textEditingController.text = '';
 
     if (playlistName == '') return;
+    if (playlistName.toLowerCase() == Constants.FAVORITE_KEY) {
+      Navigator.pop(context);
+      Modular.get<HomeController>().changeCurrentIndex(3);
+      return;
+    }
     if (_isKeyName(playlistName))
       playlistName = _toUpperFirstChar(playlistName);
 
@@ -63,7 +68,6 @@ abstract class _CreatePlaylistControllerBase with Store {
 
   bool _isKeyName(String playlistName) {
     List<String> keys = [
-      Constants.FAVORITE_KEY,
       Constants.PLAYLIST_KEY,
       getFolder.Constants.DIRECTORY_KEY
     ];
