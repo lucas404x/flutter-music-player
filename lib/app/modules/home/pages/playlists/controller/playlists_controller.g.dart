@@ -9,7 +9,7 @@ part of 'playlists_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlaylistsController on _PlaylistsControllerBase, Store {
-  final _$isFocusAtom = Atom(name: '_PlayListControllerBase.isFocus');
+  final _$isFocusAtom = Atom(name: '_PlaylistsControllerBase.isFocus');
 
   @override
   bool get isFocus {
@@ -24,40 +24,40 @@ mixin _$PlaylistsController on _PlaylistsControllerBase, Store {
     });
   }
 
-  final _$playlistsAtom = Atom(name: '_PlayListControllerBase.playlists');
+  final _$playlistsAtom = Atom(name: '_PlaylistsControllerBase.playlists');
 
   @override
-  ObservableList<Playlist> get playlists {
+  List<String> get playlists {
     _$playlistsAtom.reportRead();
     return super.playlists;
   }
 
   @override
-  set playlists(ObservableList<Playlist> value) {
+  set playlists(List<String> value) {
     _$playlistsAtom.reportWrite(value, super.playlists, () {
       super.playlists = value;
     });
   }
 
-  final _$getPlaylistsAsyncAction =
-      AsyncAction('_PlayListControllerBase.getPlaylists');
+  final _$getPlaylistKeysAsyncAction =
+      AsyncAction('_PlaylistsControllerBase.getPlaylistKeys');
 
   @override
-  Future<void> getPlaylists() {
-    return _$getPlaylistsAsyncAction.run(() => super.getPlaylists());
+  Future<void> getPlaylistKeys() {
+    return _$getPlaylistKeysAsyncAction.run(() => super.getPlaylistKeys());
   }
 
-  final _$_PlayListControllerBaseActionController =
-      ActionController(name: '_PlayListControllerBase');
+  final _$_PlaylistsControllerBaseActionController =
+      ActionController(name: '_PlaylistsControllerBase');
 
   @override
   void focusChanged() {
-    final _$actionInfo = _$_PlayListControllerBaseActionController.startAction(
-        name: '_PlayListControllerBase.focusChanged');
+    final _$actionInfo = _$_PlaylistsControllerBaseActionController.startAction(
+        name: '_PlaylistsControllerBase.focusChanged');
     try {
       return super.focusChanged();
     } finally {
-      _$_PlayListControllerBaseActionController.endAction(_$actionInfo);
+      _$_PlaylistsControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
