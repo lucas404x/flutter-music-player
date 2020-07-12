@@ -48,7 +48,7 @@ abstract class _HomeStoreBase with Store {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     List<String> data = await getSongsOnDisk(key);
 
-    if (value != null) data.add(value);
+    if (value != null && !data.contains(value)) data.add(value);
     print(data);
 
     return sharedPreferences.setStringList(key, data);
