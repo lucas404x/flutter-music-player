@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/controller/home_controller.dart';
-import 'package:flutter_music_player/app/modules/home/models/playlist.dart';
 import 'package:flutter_music_player/app/modules/home/models/song.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist/playlist_page.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/select_songs/select_songs.dart';
@@ -13,13 +12,21 @@ part 'playlist_controller.g.dart';
 class PlaylistController = _PlaylistControllerBase with _$PlaylistController;
 
 abstract class _PlaylistControllerBase with Store {
-  Playlist playlist;
+  @observable
+  ObservableList<Song> playlistSongs = ObservableList<Song>();
+
+  String _playlistKey;
 
   final _flutterSoundHelper = FlutterSoundHelper();
 
+  _PlaylistControllerBase(String playlistKey) {
+    _playlistKey = playlistKey;
+    getPlaylistSongs();
+  }
+
   Future<void> getPlaylistSongs() async {
     List<String> songs =
-        await Modular.get<HomeStore>().getSongsOnDisk(playlist.name);
+        await Modular.get<HomeStore>().getSongsOnDisk(_playlistKey);
 
     songs.forEach((songPath) {
       _flutterSoundHelper.FFmpegGetMediaInformation(songPath).then((value) {
@@ -28,7 +35,7 @@ abstract class _PlaylistControllerBase with Store {
         data.addAll(value['metadata']);
         data['path'] = songPath;
 
-        playlist.songs.add(Song.fromJson(data));
+        playlistSongs.add(Song.fromJson(data));
       });
     });
   }
@@ -40,10 +47,10 @@ abstract class _PlaylistControllerBase with Store {
     if (selectedSongs == null) return;
 
     selectedSongs.forEach((song) async {
-      await Modular.get<HomeStore>().saveDataOnDisk(playlist.name, value: song);
+      await Modular.get<HomeStore>().saveDataOnDisk(_playlistKey, value: song);
     });
 
     Modular.get<HomeController>()
-        .changeOtherPage(currentIndex: 1, page: PlaylistPage(playlist));
+        .changeOtherPage(currentIndex: 1, page: PlaylistPage(_playlistKey));
   }
 }
