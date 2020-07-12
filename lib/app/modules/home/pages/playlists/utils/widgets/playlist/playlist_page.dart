@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/home/models/playlist.dart';
+import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist/controller/playlist_controller.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/button/button.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/song_tile/song_tile_widget.dart';
 
@@ -10,6 +12,9 @@ class PlaylistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final playlistController = Modular.get<PlaylistController>();
+    playlistController.playlist = playlist;
+
     return Column(
       children: <Widget>[
         Container(
@@ -43,7 +48,7 @@ class PlaylistPage extends StatelessWidget {
                         title: 'Add new song',
                         width: 328,
                         height: 52,
-                        onPressed: () {})),
+                        onPressed: playlistController.addNewSong)),
           ),
         )
       ],
