@@ -6,6 +6,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          accentColor: Colors.orange,
           fontFamily: 'Open Sans',
           primaryColor: Colors.orange,
           backgroundColor: Colors.white,
