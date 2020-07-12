@@ -3,18 +3,26 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist/controller/playlist_controller.dart';
 import 'package:flutter_music_player/app/modules/home/utils/widgets/song_tile/song_tile_widget.dart';
 
-class PlaylistPage extends StatelessWidget {
+class PlaylistPage extends StatefulWidget {
   final String playlist;
 
   PlaylistPage(this.playlist);
 
   @override
+  _PlaylistPageState createState() => _PlaylistPageState();
+}
+
+class _PlaylistPageState extends State<PlaylistPage> {
+  @override
   Widget build(BuildContext context) {
-    final playlistController = PlaylistController(playlist);
+    final playlistController = PlaylistController(widget.playlist);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: playlistController.addNewSong,
+        onPressed: () async {
+          await playlistController.addNewSong();
+          setState(() {});
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
@@ -33,8 +41,8 @@ class PlaylistPage extends StatelessWidget {
             ),
           ),
           Text(
-            playlist,
-            style: TextStyle(fontSize: (36.0 - playlist.length)),
+            widget.playlist,
+            style: TextStyle(fontSize: (36.0 - widget.playlist.length)),
           ),
           Observer(
             builder: (_) => Text(
