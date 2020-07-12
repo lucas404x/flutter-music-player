@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_music_player/app/modules/home/models/playlist.dart';
 import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widgets/playlist_card/controller/playlist_card_controller.dart';
 
 class PlayListCard extends StatelessWidget {
-  final Playlist playlist;
+  final String playlist;
 
   PlayListCard(this.playlist);
 
@@ -26,7 +25,7 @@ class PlayListCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                playlist.name,
+                playlist,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24.0),
               )

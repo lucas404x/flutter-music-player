@@ -10,11 +10,12 @@ class PlaylistCardController = _PlaylistCardControllerBase
     with _$PlaylistCardController;
 
 abstract class _PlaylistCardControllerBase with Store {
-  Playlist playlist;
+  String playlist;
   _PlaylistCardControllerBase(this.playlist);
 
   void onTap(BuildContext context) {
-    Modular.get<HomeController>()
-        .changeOtherPage(page: PlaylistPage(playlist), currentIndex: 1);
+    Modular.get<HomeController>().changeOtherPage(
+        page: PlaylistPage(Playlist(name: playlist, songs: [])),
+        currentIndex: 1);
   }
 }
