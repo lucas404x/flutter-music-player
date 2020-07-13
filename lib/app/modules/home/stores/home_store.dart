@@ -29,7 +29,7 @@ abstract class _HomeStoreBase with Store {
     }
   }
 
-  Future<List<String>> getSongsOnDisk(String key) async {
+  Future<List<String>> getDataOnDisk(String key) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     if (!sharedPreferences.containsKey(key)) {
@@ -48,15 +48,15 @@ abstract class _HomeStoreBase with Store {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (value == null) return sharedPreferences.setStringList(key, []);
 
-    List<String> data = await getSongsOnDisk(key);
+    List<String> data = await getDataOnDisk(key);
 
     if (!data.contains(value)) data.add(value);
     return sharedPreferences.setStringList(key, data);
   }
 
-  Future<void> removeSong(String key, String path) async {
+  Future<void> removeDataOnDisk(String key, String path) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    List<String> value = await getSongsOnDisk(key);
+    List<String> value = await getDataOnDisk(key);
     value.remove(path);
     await sharedPreferences.setStringList(key, value);
   }
