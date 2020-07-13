@@ -54,7 +54,7 @@ abstract class _SongListControllerBase with Store {
 
         if (_favorites == null)
           _favorites = await Modular.get<HomeStore>()
-              .getSongsOnDisk(Constants.FAVORITE_KEY);
+              .getDataOnDisk(Constants.FAVORITE_KEY);
 
         if (_favorites.contains(data['path'])) {
           data['isFavorite'] = true;

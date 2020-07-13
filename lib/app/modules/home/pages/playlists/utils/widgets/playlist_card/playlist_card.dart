@@ -3,14 +3,16 @@ import 'package:flutter_music_player/app/modules/home/pages/playlists/utils/widg
 
 class PlayListCard extends StatelessWidget {
   final String playlist;
+  final Function(BuildContext, String) onLongPress;
 
-  PlayListCard(this.playlist);
+  PlayListCard({@required this.playlist, this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
     final playlistCardController = PlaylistCardController(playlist);
 
     return InkWell(
+      onLongPress: () => onLongPress(context, playlist),
       onTap: () => playlistCardController.onTap(context),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -30,7 +30,7 @@ abstract class _PlaylistControllerBase with Store {
   @action
   Future<void> getPlaylistSongs() async {
     List<String> songs =
-        await Modular.get<HomeStore>().getSongsOnDisk(_playlistKey);
+        await Modular.get<HomeStore>().getDataOnDisk(_playlistKey);
 
     songs.forEach((songPath) {
       _flutterSoundHelper.FFmpegGetMediaInformation(songPath)
@@ -42,7 +42,7 @@ abstract class _PlaylistControllerBase with Store {
 
         if (_favorites == null)
           _favorites = await Modular.get<HomeStore>()
-              .getSongsOnDisk(Constants.FAVORITE_KEY);
+              .getDataOnDisk(Constants.FAVORITE_KEY);
 
         if (_favorites.contains(data['path'])) {
           data['isFavorite'] = true;

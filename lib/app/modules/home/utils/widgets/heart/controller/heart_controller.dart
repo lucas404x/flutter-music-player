@@ -30,7 +30,8 @@ abstract class _HeartControllerBase with Store {
     if (song.isFavorite) {
       song.isFavorite = false;
       animation = Animations.HEART_DEACTIVATE_ANIMATION;
-      Modular.get<HomeStore>().removeSong(Constants.FAVORITE_KEY, song.path);
+      Modular.get<HomeStore>()
+          .removeDataOnDisk(Constants.FAVORITE_KEY, song.path);
     } else {
       song.isFavorite = true;
       animation = Animations.HEART_ACTIVATE_ANIMATION;

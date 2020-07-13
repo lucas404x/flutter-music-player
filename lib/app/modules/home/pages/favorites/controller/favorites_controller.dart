@@ -39,7 +39,7 @@ abstract class _FavoritesControllerBase with Store {
 
   Future<void> getSongs() async {
     List<String> favoriteSongsPath =
-        await Modular.get<HomeStore>().getSongsOnDisk(Constants.FAVORITE_KEY);
+        await Modular.get<HomeStore>().getDataOnDisk(Constants.FAVORITE_KEY);
 
     if (favoriteSongsPath.length == 0) return;
 
@@ -47,7 +47,8 @@ abstract class _FavoritesControllerBase with Store {
 
     favoriteSongsPath.forEach((uri) async {
       if (!File(uri).existsSync()) {
-        await Modular.get<HomeStore>().removeSong(Constants.FAVORITE_KEY, uri);
+        await Modular.get<HomeStore>()
+            .removeDataOnDisk(Constants.FAVORITE_KEY, uri);
         return;
       }
 
