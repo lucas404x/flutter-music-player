@@ -31,19 +31,21 @@ class _PlaylistsPageState extends State<PlaylistsPage> {
               ),
             ),
           ),
-          Observer(
-            builder: (_) => playlistController.playlists != null
-                ? Container(
-                    width: size.width,
-                    height: 250.0,
-                    child: ListView(
-                      children: playlistController.playlists
-                          .map((playlist) => PlayListCard(playlist))
-                          .toList(),
-                      scrollDirection: Axis.horizontal,
-                    ),
-                  )
-                : Container(),
+          Container(
+            width: size.width,
+            height: 250.0,
+            child: AnimatedList(
+              scrollDirection: Axis.horizontal,
+              key: playlistController.playlistKey,
+              initialItemCount: playlistController.playlists.length,
+              itemBuilder: (_, index, animation) => FadeTransition(
+                opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
+                child: PlayListCard(
+                  playlist: playlistController.playlists[index],
+                  onLongPress: playlistController.removePlaylist,
+                ),
+              ),
+            ),
           ),
           SizedBox(
             height: 150,
