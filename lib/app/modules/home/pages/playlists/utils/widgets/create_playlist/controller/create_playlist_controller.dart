@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_music_player/app/modules/get_folder/utils/constant/get_folder_constant.dart'
     as getFolder;
@@ -50,7 +51,15 @@ abstract class _CreatePlaylistControllerBase with Store {
       bool decision = await dialogWidget(
           context: context,
           title: 'This playlist already exists.',
-          content: 'Do you want to overwriter the current playlist?');
+          content: 'Do you want to overwriter the current playlist?',
+          firstOption: FlatButton(
+            child: Text('No'),
+            onPressed: () => Navigator.pop(context, false),
+          ),
+          secondOption: FlatButton(
+            child: Text('Yes'),
+            onPressed: () => Navigator.pop(context, true),
+          ));
 
       if (!decision) {
         Navigator.pop(context);
