@@ -26,24 +26,20 @@ abstract class _HeartControllerBase with Store {
   }
 
   @action
-  Future<void> changeState() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    List<String> favorites =
-        await _homeStore.getSongsOnDisk(Constants.FAVORITE_KEY);
-
+  void changeState() {
     if (song.isFavorite) {
       song.isFavorite = false;
       animation = Animations.HEART_DEACTIVATE_ANIMATION;
-      favorites.remove(song.path);
+      Modular.get<HomeStore>().removeSong(Constants.FAVORITE_KEY, song.path);
     } else {
       song.isFavorite = true;
       animation = Animations.HEART_ACTIVATE_ANIMATION;
-      favorites.add(song.path);
+      Modular.get<HomeStore>()
+          .saveDataOnDisk(Constants.FAVORITE_KEY, value: song.path);
     }
 
     _homeStore.changeFavoriteState(song);
 
     isPaused = false;
-    await sharedPreferences.setStringList(Constants.FAVORITE_KEY, favorites);
   }
 }

@@ -24,12 +24,18 @@ mixin _$HeartController on _HeartControllerBase, Store {
     });
   }
 
-  final _$changeStateAsyncAction =
-      AsyncAction('_HeartControllerBase.changeState');
+  final _$_HeartControllerBaseActionController =
+      ActionController(name: '_HeartControllerBase');
 
   @override
-  Future<void> changeState() {
-    return _$changeStateAsyncAction.run(() => super.changeState());
+  void changeState() {
+    final _$actionInfo = _$_HeartControllerBaseActionController.startAction(
+        name: '_HeartControllerBase.changeState');
+    try {
+      return super.changeState();
+    } finally {
+      _$_HeartControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
