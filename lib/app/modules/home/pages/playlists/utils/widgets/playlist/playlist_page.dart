@@ -51,13 +51,19 @@ class _PlaylistPageState extends State<PlaylistPage> {
             ),
           ),
           Expanded(
-            child: Observer(
-              builder: (_) => ListView.builder(
-                  itemCount: playlistController.playlistSongs.length,
-                  itemBuilder: (_, index) => SongTile(
-                      songs: playlistController.playlistSongs,
-                      song: playlistController.playlistSongs[index])),
-            ),
+            child: AnimatedList(
+                key: playlistController.playlistSongsKey,
+                initialItemCount: playlistController.playlistSongs.length,
+                itemBuilder: (_, index, animation) => FadeTransition(
+                      opacity: animation.drive(Tween(begin: 0.0, end: 1.0)),
+                      child: GestureDetector(
+                        onLongPress: () => playlistController.removeSong(
+                            context, playlistController.playlistSongs[index]),
+                        child: SongTile(
+                            songs: playlistController.playlistSongs,
+                            song: playlistController.playlistSongs[index]),
+                      ),
+                    )),
           ),
         ],
       ),
