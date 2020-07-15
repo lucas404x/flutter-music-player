@@ -24,29 +24,6 @@ mixin _$PlaylistsController on _PlaylistsControllerBase, Store {
     });
   }
 
-  final _$playlistsAtom = Atom(name: '_PlaylistsControllerBase.playlists');
-
-  @override
-  List<String> get playlists {
-    _$playlistsAtom.reportRead();
-    return super.playlists;
-  }
-
-  @override
-  set playlists(List<String> value) {
-    _$playlistsAtom.reportWrite(value, super.playlists, () {
-      super.playlists = value;
-    });
-  }
-
-  final _$getPlaylistKeysAsyncAction =
-      AsyncAction('_PlaylistsControllerBase.getPlaylistKeys');
-
-  @override
-  Future<void> getPlaylistKeys() {
-    return _$getPlaylistKeysAsyncAction.run(() => super.getPlaylistKeys());
-  }
-
   final _$_PlaylistsControllerBaseActionController =
       ActionController(name: '_PlaylistsControllerBase');
 
@@ -64,8 +41,7 @@ mixin _$PlaylistsController on _PlaylistsControllerBase, Store {
   @override
   String toString() {
     return '''
-isFocus: ${isFocus},
-playlists: ${playlists}
+isFocus: ${isFocus}
     ''';
   }
 }
